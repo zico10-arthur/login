@@ -1,5 +1,5 @@
 ﻿using login.Domain.Entities;
-using login.Domain.Entities.ContaExceptions;
+using login.Application.Validacoes;
 using login.Infraestructure.Repository;
 
 namespace login.Application
@@ -8,7 +8,11 @@ namespace login.Application
     {
         public static void AdicionarConta(Conta conta)
         {
-           
+            Validacoesservice.ValidacoesNomeSobreNome(conta);
+            Validacoesservice.ValidacoesEmail(conta);
+            Validacoesservice.ValidacoesSenha(conta);
+
+            ContaRepository.AdicionarConta(conta);
         }
     }
 }

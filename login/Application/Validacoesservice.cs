@@ -3,9 +3,9 @@ using login.Domain.Entities;
 using login.Domain.Entities.ContaExceptions;
 
 
-namespace login.Application
+namespace login.Application.Validacoes
 {
-    public  static class Validacoesservice
+    public static class Validacoesservice
     {
         public static void ValidacoesNomeSobreNome(Conta conta)
         {

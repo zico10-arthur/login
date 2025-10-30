@@ -24,7 +24,7 @@ namespace login.Domain.Entities.ContaExceptions
     public class NomeSobreNomestringExceptions : Exception 
     { 
         public NomeSobreNomestringExceptions()
-            : base(" tem certeza que esse é o seu nome") { }
+            : base(" tem certeza que esse é o seu nome? ") { }
     
     }
     public class EmailInvalidoException : Exception
@@ -36,6 +36,11 @@ namespace login.Domain.Entities.ContaExceptions
     {
         public EmailEmBrancoException()
             : base("o email não pode ser vazio") { }
+    }
+    public class LoginExistenteException : Exception
+    {
+        public LoginExistenteException()
+            : base("esse login não existe") { }
     }
 
 

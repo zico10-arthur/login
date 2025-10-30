@@ -1,4 +1,5 @@
 ﻿using login.Domain.Entities;
+using login.Domain.Entities.ContaExceptions;
 using login.Infraestructure.Data;
 
 namespace login.Infraestructure.Repository
@@ -13,24 +14,9 @@ namespace login.Infraestructure.Repository
             {
                 DataBase.contas.Add(conta);
             }
-            else
-            {
-                throw new 
-            }
+ 
             
         }
-
-        public static void RemoverConta(Conta conta)
-        {
-            Conta? ContaCadastrada = DataBase.contas.Find(c => c.Email == conta.Email);
-
-            if (ContaCadastrada != null)
-            {
-                DataBase.contas.Remove(conta);
-
-            }
-        }
-
         public static void AlterarSenha(Conta conta, string NovaSenha)
         {
             Conta? ContaCadastrada = DataBase.contas.Find(c => c.Email == conta.Email);
@@ -42,10 +28,20 @@ namespace login.Infraestructure.Repository
 
         }
 
-        public static List<Conta> ListarContas()
+        public static bool Autenticacao(Conta conta)
         {
-            return DataBase.contas.ToList();
+            Conta? ContaCadastrada = DataBase.contas.Find(c => c.Email == conta.Email && c.Senha == conta.Senha);
+
+            if (ContaCadastrada != null)
+            {
+                return true;
+            }
+            return false;
+            
+
         }
+
+
     }
 
        
