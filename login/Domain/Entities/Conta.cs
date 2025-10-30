@@ -1,0 +1,13 @@
+﻿namespace login.Domain.Entities
+{
+    public class Conta
+    {
+        public string Nome { get; set; } = string.Empty;
+
+        public string SobreNome { get; set; } = string.Empty;
+
+        public string Email { get; set; } = string.Empty;
+
+        public string Senha { get; set; } = string.Empty;
+    }
+}
