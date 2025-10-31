@@ -1,6 +1,7 @@
 ﻿using System.Net.Mail;
 using login.Domain.Entities;
 using login.Domain.Entities.ContaExceptions;
+using login.Infraestructure.Data;
 
 
 namespace login.Application.Validacoes
@@ -46,5 +47,7 @@ namespace login.Application.Validacoes
                 throw new SenhaInvalidaException();
             }
         }
+       
+
     }
 }

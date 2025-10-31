@@ -14,6 +14,10 @@ namespace login.Infraestructure.Repository
             {
                 DataBase.contas.Add(conta);
             }
+            else
+            {
+                throw new ContaExisteExceptions(); 
+            }
  
             
         }
@@ -24,6 +28,10 @@ namespace login.Infraestructure.Repository
             if (ContaCadastrada != null)
             {
                 ContaCadastrada.Senha = NovaSenha;
+            }
+            else
+            {
+                throw new LoginExistenteException();
             }
 
         }
@@ -39,6 +47,10 @@ namespace login.Infraestructure.Repository
             return false;
             
 
+        }
+        public static List<Conta> ListarConta()
+        {
+            return DataBase.contas.ToList();
         }
 
 

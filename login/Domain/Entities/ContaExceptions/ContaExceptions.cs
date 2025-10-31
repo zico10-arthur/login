@@ -42,7 +42,7 @@ namespace login.Domain.Entities.ContaExceptions
         public LoginExistenteException()
             : base("esse login não existe") { }
     }
-
+   
 
 
 }
