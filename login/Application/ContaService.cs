@@ -21,9 +21,10 @@ namespace login.Application.ContaService
             ContaRepository.AlterarSenha(conta, NovaSenha);
         }
 
-        public static bool Autenticar(Conta conta)
+        public static void Autenticar(Conta conta)
         {
-            return ContaRepository.Autenticacao(conta);
+            Validacoesservice.ValidarLogin(conta);
+            ContaRepository.Autenticacao(conta);
         }
 
         public static List<Conta> ListarConta()

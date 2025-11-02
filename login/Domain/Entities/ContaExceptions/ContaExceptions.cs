@@ -40,7 +40,17 @@ namespace login.Domain.Entities.ContaExceptions
     public class LoginExistenteException : Exception
     {
         public LoginExistenteException()
-            : base("esse login não existe") { }
+            : base("email ou senha incorretos") { }
+    }
+    public class ValidarLoginException : Exception
+    {
+        public ValidarLoginException()
+            : base("email e senha precisam ser preenchidos") { }
+    }
+    public class ContaNaoCadasException : Exception
+    {
+        public ContaNaoCadasException()
+            : base("essa conta não está cadastrada") { }
     }
    
 

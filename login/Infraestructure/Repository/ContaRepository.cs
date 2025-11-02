@@ -36,15 +36,19 @@ namespace login.Infraestructure.Repository
 
         }
 
-        public static bool Autenticacao(Conta conta)
+        public static Conta Autenticacao(Conta conta)
         {
             Conta? ContaCadastrada = DataBase.contas.Find(c => c.Email == conta.Email && c.Senha == conta.Senha);
 
             if (ContaCadastrada != null)
             {
-                return true;
+                return ContaCadastrada;
             }
-            return false;
+            else
+            {
+                throw new LoginExistenteException();
+              
+            }
             
 
         }

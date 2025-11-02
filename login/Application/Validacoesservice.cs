@@ -47,6 +47,17 @@ namespace login.Application.Validacoes
                 throw new SenhaInvalidaException();
             }
         }
+        public static void ValidarLogin(Conta conta)
+        {
+            if (string.IsNullOrWhiteSpace(conta.Email) || string.IsNullOrWhiteSpace(conta.Senha))
+            {
+                throw new ValidarLoginException();
+            }
+            if (conta.Email == null)
+            {
+                throw new ContaNaoCadasException();
+            }
+        }
        
 
     }

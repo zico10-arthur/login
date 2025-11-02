@@ -50,6 +50,21 @@ namespace login.Presentation
             }
            
         }
+        [HttpPost("Logar")]
+
+        public ActionResult<Conta> Logar([FromBody] Conta conta)
+        {
+            try
+            {
+                ContaService.Autenticar(conta);
+                return Ok("login feito com sucesso");
+
+            }
+            catch (Exception ex)
+            {
+                return Unauthorized(ex.Message);
+            }
+        }
     
     
     }
