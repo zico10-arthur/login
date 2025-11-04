@@ -1,18 +1,24 @@
 ﻿using login.Domain.Entities;
 using login.Domain.Entities.ContaExceptions;
 using login.Infraestructure.Data;
-
+using login.Domain.Interfaces;
 namespace login.Infraestructure.Repository
 {
-    public class ContaRepository
+    public class ContaRepository : IContaRepository
     {
-        public static void AdicionarConta(Conta conta)
+        private readonly DataBase _db;
+
+        public ContaRepository(DataBase db)
         {
-            Conta? ContaCadastrada = DataBase.contas.Find(c => c.Email == conta.Email);
+            _db = db;
+        }
+        public void AdicionarConta(Conta conta)
+        {
+            Conta? ContaCadastrada = _db.contas.Find(c => c.Email == conta.Email);
 
             if (ContaCadastrada == null)
             {
-                DataBase.contas.Add(conta);
+                _db.contas.Add(conta);
             }
             else
             {
@@ -21,9 +27,9 @@ namespace login.Infraestructure.Repository
  
             
         }
-        public static void AlterarSenha(Conta conta, string NovaSenha)
+        public void AlterarSenha(Conta conta, string NovaSenha)
         {
-            Conta? ContaCadastrada = DataBase.contas.Find(c => c.Email == conta.Email);
+            Conta? ContaCadastrada = _db.contas.Find(c => c.Email == conta.Email);
             
             if (ContaCadastrada != null)
             {
@@ -36,9 +42,9 @@ namespace login.Infraestructure.Repository
 
         }
 
-        public static Conta Autenticacao(Conta conta)
+        public Conta Autenticacao(Conta conta)
         {
-            Conta? ContaCadastrada = DataBase.contas.Find(c => c.Email == conta.Email && c.Senha == conta.Senha);
+            Conta? ContaCadastrada = _db.contas.Find(c => c.Email == conta.Email && c.Senha == conta.Senha);
 
             if (ContaCadastrada != null)
             {
@@ -52,9 +58,9 @@ namespace login.Infraestructure.Repository
             
 
         }
-        public static List<Conta> ListarConta()
+        public List<Conta> ListarConta()
         {
-            return DataBase.contas.ToList();
+            return _db.contas.ToList();
         }
 
 

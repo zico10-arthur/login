@@ -6,7 +6,7 @@ using login.Infraestructure.Data;
 
 namespace login.Application.Validacoes
 {
-    public static class Validacoesservice
+    public class Validacoesservice
     {
         public static void ValidacoesNomeSobreNome(Conta conta)
         {

@@ -1,35 +1,42 @@
 ﻿using login.Domain.Entities;
 using login.Application.Validacoes;
 using login.Infraestructure.Repository;
+using login.Domain.Interfaces;
 
 namespace login.Application.ContaService
 {
-    public static class ContaService
+    public class ContaService
     {
-        public static void AdicionarConta(Conta conta)
+        private readonly IContaRepository _repository;
+
+        public ContaService(IContaRepository repository)
+        {
+            _repository = repository;
+        }
+        public void AdicionarConta(Conta conta)
         {
             Validacoesservice.ValidacoesNomeSobreNome(conta);
             Validacoesservice.ValidacoesEmail(conta);
             Validacoesservice.ValidacoesSenha(conta);
 
-            ContaRepository.AdicionarConta(conta);
+            _repository.AdicionarConta(conta);
         }
 
-        public static void AlterarSenha(Conta conta, string NovaSenha)
+        public void AlterarSenha(Conta conta, string NovaSenha)
         {
             Validacoesservice.ValidacoesSenha(new Conta { Senha = NovaSenha});
-            ContaRepository.AlterarSenha(conta, NovaSenha);
+            _repository.AlterarSenha(conta, NovaSenha);
         }
 
-        public static void Autenticar(Conta conta)
+        public void Autenticar(Conta conta)
         {
             Validacoesservice.ValidarLogin(conta);
-            ContaRepository.Autenticacao(conta);
+            _repository.Autenticacao(conta);
         }
 
-        public static List<Conta> ListarConta()
+        public List<Conta> ListarConta()
         {
-            return ContaRepository.ListarConta();
+            return _repository.ListarConta();
         }
     }
 }

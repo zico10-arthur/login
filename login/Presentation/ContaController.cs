@@ -10,12 +10,18 @@ namespace login.Presentation
     [ApiController]
     public class ContaController : ControllerBase
     {
+        private readonly ContaService _service;
+
+        public ContaController(ContaService service)
+        {
+            _service = service;
+        }
         [HttpGet("Listar")]
 
         public ActionResult<List<Conta>> Listar()
         {
            
-           return Ok(ContaService.ListarConta());
+           return Ok(_service.ListarConta());
         
         }
 
@@ -25,7 +31,7 @@ namespace login.Presentation
         {
             try
             {
-                ContaService.AdicionarConta(conta);
+                _service.AdicionarConta(conta);
 
                 return Ok(conta);
             }
@@ -41,7 +47,7 @@ namespace login.Presentation
         {
             try
             {
-                ContaService.AlterarSenha(new Conta { Email = dto.Email}, dto.NovaSenha);
+                _service.AlterarSenha(new Conta { Email = dto.Email}, dto.NovaSenha);
                 return Ok("Senha alterada com sucesso");
             }
             catch (Exception ex)
@@ -56,7 +62,7 @@ namespace login.Presentation
         {
             try
             {
-                ContaService.Autenticar(conta);
+                _service.Autenticar(conta);
                 return Ok("login feito com sucesso");
 
             }
