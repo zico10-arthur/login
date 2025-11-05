@@ -8,7 +8,7 @@ namespace login.Domain.Interfaces
     public interface IContaRepository 
     {
         void AdicionarConta(Conta conta);
-        void AlterarSenha(Conta conta, string NovaSenha);
+        void AlterarSenha(Conta conta);
         Conta Autenticacao(Conta conta);
         List<Conta> ListarConta();
     }

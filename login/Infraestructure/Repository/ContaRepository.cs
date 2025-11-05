@@ -27,13 +27,13 @@ namespace login.Infraestructure.Repository
  
             
         }
-        public void AlterarSenha(Conta conta, string NovaSenha)
+        public void AlterarSenha(Conta conta)
         {
             Conta? ContaCadastrada = _db.contas.Find(c => c.Email == conta.Email);
             
             if (ContaCadastrada != null)
             {
-                ContaCadastrada.Senha = NovaSenha;
+                ContaCadastrada.Senha = conta.Senha;
             }
             else
             {

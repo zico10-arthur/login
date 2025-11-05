@@ -27,13 +27,13 @@ namespace login.Presentation
 
         [HttpPost("Cadastrar")]
 
-        public ActionResult<Conta> Cadastrar([FromBody] Conta conta)
+        public ActionResult<Conta> Cadastrar([FromBody] CriarContaDTO dto)
         {
             try
             {
-                _service.AdicionarConta(conta);
+                _service.AdicionarConta(dto);
 
-                return Ok(conta);
+                return Ok("conta criada com sucesso!");
             }
             catch (Exception ex)
             {
@@ -47,7 +47,7 @@ namespace login.Presentation
         {
             try
             {
-                _service.AlterarSenha(new Conta { Email = dto.Email}, dto.NovaSenha);
+                _service.AlterarSenha(dto);
                 return Ok("Senha alterada com sucesso");
             }
             catch (Exception ex)
@@ -58,11 +58,11 @@ namespace login.Presentation
         }
         [HttpPost("Logar")]
 
-        public ActionResult<Conta> Logar([FromBody] Conta conta)
+        public ActionResult<Conta> Logar([FromBody] AutenticarDTO dto)
         {
             try
             {
-                _service.Autenticar(conta);
+                _service.Autenticar(dto);
                 return Ok("login feito com sucesso");
 
             }
