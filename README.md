@@ -1,6 +1,6 @@
 # Projeto de Sistema de Login em C#
 
-Este é um projeto de exemplo de sistema de login implementado em C#, seguindo boas práticas de DDD (Domain-Driven Design), Repository Pattern e separação de camadas. O projeto usa DTOs para transferência de dados e JSON como armazenamento persistente, mas também pode ser adaptado para bancos de dados reais.
+Este é um projeto de exemplo de sistema de login implementado em C#, seguindo boas práticas de DDD (Domain-Driven Design), Repository Pattern e separação de camadas. O projeto usa DTOs para transferência de dados e listas na memória, mas também pode ser adaptado para bancos de dados reais.
 
 ---
 
