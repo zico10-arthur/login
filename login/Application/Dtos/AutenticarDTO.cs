@@ -11,8 +11,8 @@ namespace login.Application.Dtos
         {
             return new Conta
             {
-                Email = this.Email,
-                Senha = this.Senha
+                Email = Email,
+                Senha = Senha
             };
         }
     }

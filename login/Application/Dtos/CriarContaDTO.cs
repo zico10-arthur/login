@@ -16,10 +16,10 @@ namespace login.Application.Dtos
         {
             return new Conta
             {
-                Nome = this.Nome,
-                SobreNome = this.SobreNome,
-                Email = this.Email,
-                Senha = this.Senha
+                Nome = Nome,
+                SobreNome = SobreNome,
+                Email = Email,
+                Senha = Senha
             };
         }
 

@@ -1,6 +1,6 @@
 ﻿using System.Buffers.Text;
 
-namespace login.Domain.Entities.ContaExceptions
+namespace login.Domain.ContaExceptions
 {
     public class ContaExisteExceptions : Exception
     {
@@ -46,11 +46,6 @@ namespace login.Domain.Entities.ContaExceptions
     {
         public ValidarLoginException()
             : base("email e senha precisam ser preenchidos") { }
-    }
-    public class ContaNaoCadasException : Exception
-    {
-        public ContaNaoCadasException()
-            : base("essa conta não está cadastrada") { }
     }
    
 

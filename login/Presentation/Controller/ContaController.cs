@@ -1,18 +1,18 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using login.Domain.Entities;
-using login.Application.ContaService;
 using login.Application.Dtos;
+using login.Application.Interface;
 
-namespace login.Presentation
+namespace login.Presentation.Controller
 {
     [Route("api/[controller]")]
     [ApiController]
     public class ContaController : ControllerBase
     {
-        private readonly ContaService _service;
+        private readonly IContaService _service;
 
-        public ContaController(ContaService service)
+        public ContaController(IContaService service)
         {
             _service = service;
         }

@@ -2,11 +2,11 @@
 
 namespace login.Domain.Interfaces
 {
-    public interface IContaRepository 
+    public interface IDataBase
     {
         void AdicionarConta(Conta conta);
-        void AlterarSenha(Conta conta);
-        Conta Autenticacao(Conta conta);
         List<Conta> ListarConta();
+        void AlterarSenha(string email, string NovaSenha);
+        Conta? Autenticar(string Email);
     }
 }

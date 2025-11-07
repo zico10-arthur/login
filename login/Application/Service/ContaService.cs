@@ -1,12 +1,11 @@
 ﻿using login.Domain.Entities;
-using login.Application.Validacoes;
-using login.Infraestructure.Repository;
 using login.Domain.Interfaces;
 using login.Application.Dtos;
+using login.Application.Interface;
 
-namespace login.Application.ContaService
+namespace login.Application.Service
 {
-    public class ContaService
+    public class ContaService : IContaService
     {
         private readonly IContaRepository _repository;
 
@@ -17,9 +16,9 @@ namespace login.Application.ContaService
         public void AdicionarConta(CriarContaDTO dto)
         {
             Conta conta = dto.Mapper();
-            Validacoesservice.ValidacoesNomeSobreNome(conta);
-            Validacoesservice.ValidacoesEmail(conta);
-            Validacoesservice.ValidacoesSenha(conta);
+            Validacoesservice.ValidacoesNomeSobreNome(dto);
+            Validacoesservice.ValidacoesEmail(dto);
+            Validacoesservice.ValidacoesSenha(dto);
 
             _repository.AdicionarConta(conta);
         }
@@ -27,15 +26,15 @@ namespace login.Application.ContaService
         public void AlterarSenha(AlterarSenhaDto dto)
         {
             Conta conta = dto.Mapear();
-            Validacoesservice.ValidacoesSenha(conta);
+            Validacoesservice.ValidacoesNovaSenha(dto);
             _repository.AlterarSenha(conta);
         }
 
-        public void Autenticar(AutenticarDTO dto)
+        public Conta Autenticar(AutenticarDTO dto)
         {
             Conta conta = dto.Mapper();
-            Validacoesservice.ValidarLogin(conta);
-            _repository.Autenticacao(conta);
+            Validacoesservice.ValidarLogin(dto);
+             return _repository.Autenticacao(conta);
         }
 
         public List<Conta> ListarConta()
