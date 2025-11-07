@@ -1,55 +1,65 @@
-projeto Login – Atualização
+# Projeto de Sistema de Login em C#
 
-Descrição:
-O sistema de login foi desenvolvido em C# com .NET seguindo a arquitetura em camadas e princípios do Domain-Driven Design (DDD).
-O objetivo é praticar boas práticas de programação, separação de responsabilidades e agora também o uso de DTOs (Data Transfer Objects) para evitar o acoplamento entre camadas.
+Este é um projeto de exemplo de sistema de login implementado em C#, seguindo boas práticas de DDD (Domain-Driven Design), Repository Pattern e separação de camadas. O projeto usa DTOs para transferência de dados e JSON como armazenamento persistente, mas também pode ser adaptado para bancos de dados reais.
 
-Estrutura atual do projeto:
+---
 
-Domain: contém as entidades e exceções personalizadas.
+## Estrutura do Projeto
 
-Application: contém os serviços e os DTOs.
+Domain/
+  - Entities/Conta.cs
+  - Interfaces/IContaRepository.cs
+  - Interfaces/IDataBase.cs
+  - ContaExceptions/
 
-Infrastructure: contém o repositório e a parte de acesso aos dados.
+Application/
+  - Dtos/
+      - CriarContaDTO.cs
+      - AlterarSenhaDTO.cs
+      - AutenticarDTO.cs
+  - Service/ValidacoesService.cs
+  - Service/ContaService.cs
 
-Presentation: contém o controller responsável por receber as requisições da API.
+Infraestructure/
+  - Data/DataBase.cs
+  - Repository/ContaRepository.cs
 
-Principais funcionalidades:
+Program.cs
 
-Cadastro de conta
+---
 
-Login de usuário
+## Tecnologias Utilizadas
 
-Alteração de senha
+- C# 12
+- .NET 8
+- ASP.NET Core Web API
+- Postman (para testes)
+- DDD (Domain-Driven Design)
+- Repository Pattern
+- DTOs para entrada/saída de dados
 
-Validações e exceções específicas para cada caso
+---
 
-Implementação de DTOs para entrada de dados
+## Funcionalidades
 
-Mapeamento entre DTOs e entidades de domínio
+- Cadastro de usuário (nome, sobrenome, email, senha)
+- Autenticação de usuário (login)
+- Alteração de senha
+- Listagem de contas
+- Validações de negócio:
+  - Nome e sobrenome não podem estar vazios e devem conter apenas letras e espaços
+  - Email deve ser válido
+  - Senha deve ter pelo menos 8 caracteres, incluir letras, números e caracteres especiais
+  - Login valida se email e senha foram preenchidos
+- Estrutura pronta para migrar para banco de dados real
 
-Atualizações recentes:
+---
+## Boas Práticas Implementadas
 
-Foram criadas as classes ContaCreateDto, ContaLoginDto e AlterarSenhaDto na camada Application.
+- Separação de camadas: Domain → Application → Infraestructure
+- Uso de DTOs para não expor entidades do domínio
+- Validações centralizadas no serviço ValidacoesService
+- Repository Pattern desacoplando regras de negócio da persistência
+- Injeção de dependência para flexibilidade
 
-Cada DTO possui um método Mapear, que transforma os dados recebidos da requisição em uma entidade Conta.
-
-O ContaService passou a receber os DTOs e fazer o mapeamento antes de enviar para o repositório.
-
-O controller foi atualizado para receber os DTOs nas ações, evitando que a entidade de domínio seja exposta.
-
-O código agora está mais desacoplado e segue um padrão mais próximo de aplicações reais em .NET.
-
-Próximos passos:
-
-Criar interfaces para o service e o repository (IContaService e IContaRepository).
-
-Tecnologias utilizadas:
-
-.NET 8
-
-C#
-
-ASP.NET Core Web API
-
-Princípios de Domain-Driven Design (DDD)
+---
